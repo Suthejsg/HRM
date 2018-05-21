@@ -1,12 +1,15 @@
 package com.hrm.PFM;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.testng.annotations.DataProvider;
 
 public class Datautil {
 	
@@ -22,15 +25,18 @@ public class Datautil {
 		System.out.println(maps);
 	}
 	
-	
-	public static void getexcel()
+	@DataProvider
+	public static Object[][] getData()
 	{
+		Object[][] dataArray=new Object[1][1];
 		try
 		{
-			HashMap<String,String> maps=new HashMap<String,String>();
-			Workbook wb=WorkbookFactory.create(new File("D:\\Suthej\\PFM\\src\\test\\java\\com\\hrm\\resource\\AdminData.xls"));
+			HashMap<String,List<String>> maps=new HashMap<String,List<String>>();
+			List<String> valueList=null;
+			Workbook wb=WorkbookFactory.create(new File("C:\\Users\\user\\git\\HRM1\\src\\test\\java\\com\\hrm\\resource\\AdminData.xls"));
 			Sheet s=wb.getSheetAt(0);
-			String key = "",value="";
+			String key = "";
+			
 			
 			int rowCount=s.getLastRowNum();
 			int colCount=s.getRow(0).getLastCellNum();
@@ -43,29 +49,37 @@ public class Datautil {
 					{
 						Row row=s.getRow(j);
 						key=row.getCell(i).getStringCellValue();
+						valueList=new ArrayList<String>();
 						
 					}
 					else
 					{
+						
 						Row row=s.getRow(j);
-						value=row.getCell(i).getStringCellValue();
-						maps.put(key, value);
+						valueList.add(row.getCell(i).getStringCellValue());
+						
 					}
 				}
+				maps.put(key, valueList);
 			}
 			
-			
+			dataArray[0][0]=maps;
+		
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		
+		return dataArray;
+		
+		
 	}
 
 	public static void main(String[] args) {
 		
 		thash();
-		getexcel();
+		getData();
 
 	}
 
