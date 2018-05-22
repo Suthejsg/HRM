@@ -6,17 +6,14 @@ import org.testng.annotations.Test;
 
 public class LogTest1 extends BaseTest {
 	
-	@BeforeSuite
-	public void bs()
-	{
-		logger=Logger.getLogger(this.getClass().getName());
-	}
+	
 	
 	
 	@Test
 	public void checkLogs()
 	{
 		
+		getlogger(getClass().getName());
 		testStart("Vtest");
 		
 	}
