@@ -13,8 +13,8 @@ public class LogTest1 extends BaseTest {
 	public void checkLogs()
 	{
 		
-		getlogger(getClass().getName());
-		testStart("Vtest");
+		logger.info("Test");
+		
 		
 	}
 

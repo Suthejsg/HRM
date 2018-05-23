@@ -31,6 +31,8 @@ public class BaseTest {
 			FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"/src/main/java/com/hrm/PFM/Config/Config.properties");
 			prop.load(fis);
 			MainTab maintab=new MainTab(driver,getlogger(MainTab.class.getName()));
+			browserInitialization();
+			logger=getlogger(getClass().getName());
 		}
 		catch(Exception e)
 		{
@@ -38,13 +40,9 @@ public class BaseTest {
 		}
 	}
 	
-	public static void main(String[] args)
-	{		
-		getlogger(BaseTest.class.getName());
 	
-	}
 	
-	public void testStart(String Testname)
+	public void browserInitialization()
 	{
 		String browserName=prop.getProperty("browserName");
 		String implicitTimeOut=prop.getProperty("IMPLICIT_TIMEOUT");
@@ -85,7 +83,7 @@ public class BaseTest {
 		
 	}
 	
-	public static Logger getlogger(String testCaseName)
+	public Logger getlogger(String testCaseName)
 	{
 		logger=Logger.getLogger(testCaseName);
 		return logger;
