@@ -33,7 +33,7 @@ public class Datautil {
 		{
 			HashMap<String,List<String>> maps=new HashMap<String,List<String>>();
 			List<String> valueList=null;
-			Workbook wb=WorkbookFactory.create(new File("C:\\Users\\user\\git\\HRM1\\src\\test\\java\\com\\hrm\\resource\\AdminData.xls"));
+			Workbook wb=WorkbookFactory.create(new File(System.getProperty("user.dir")+"/src/test/java/com/hrm/resource/AdminData.xls"));
 			Sheet s=wb.getSheetAt(0);
 			String key = "";
 			

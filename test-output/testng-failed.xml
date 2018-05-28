@@ -3,12 +3,17 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.hrm.PFM.LogTest1">
+      <class name="com.hrm.Tests.JobTests.JobTitleCreation">
         <methods>
-          <include name="bs"/>
-          <include name="checkLogs"/>
+          <include name="afterTest"/>
+          <include name="beforeSuite"/>
+          <include name="afterSuite"/>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="createJobTitle"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- com.hrm.PFM.LogTest1 -->
+      </class> <!-- com.hrm.Tests.JobTests.JobTitleCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

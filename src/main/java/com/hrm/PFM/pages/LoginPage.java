@@ -33,9 +33,11 @@ public class LoginPage extends BaseTest {
 	
 	public void Login(String username,String Password)
 	{
+		driver.get(prop.getProperty("url"));
 		usernameTextBox.clear();
 		usernameTextBox.sendKeys("Admin");
 		passwordTextBox.clear();
+		passwordTextBox.sendKeys("admin");
 		loginButton.click();
 		WebDriverWait wait=new WebDriverWait(driver,30);
 		wait.until(ExpectedConditions.textToBePresentInElement(usernameAfterLogin, "Welcome "+username));

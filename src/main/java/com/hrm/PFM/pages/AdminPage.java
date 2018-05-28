@@ -2,6 +2,7 @@ package com.hrm.PFM.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,48 +10,41 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hrm.PFM.BaseTest;
+import com.hrm.pages.Admin.UsersCreationPage;
+import com.hrm.pages.Jobs.EmploymentStatusPage;
+import com.hrm.pages.Jobs.JobCategoriesPage;
+import com.hrm.pages.Jobs.PayGradesPage;
+import com.hrm.pages.Jobs.WorkShiftspage;
 
 public class AdminPage extends BaseTest {
 	
-	@FindBy(xpath="//a[@id='menu_admin_UserManagement']")
-	WebElement userManagementDropdown;
+	/*******************Users*******************************/
+	@FindBy(linkText="User Management")
+	WebElement usermanagementDropdown;
 	
-	@FindBy(linkText="Users")
-	WebElement userCreationOption;
+	@FindBy(xpath="//a[text()='User Management']/..//a[text()='Users']")
+	WebElement users;
 	
+	/*************************** Jobs****************************/
 	
-	@FindBy(id="menu_admin_Job")
-	WebElement jobDropdown;
+	@FindBy(linkText="Job")
+	WebElement jobdropdown;
 	
 	@FindBy(linkText="Job Titles")
-	WebElement jobTitleCreationOption;	
+	WebElement jobTitles;
 	
-	@FindBy(id="systemUser_userType")
-	Select userroleSelect;
+	@FindBy(linkText="Pay Grades")
+	WebElement payGrades;
 	
-	@FindBy(id="systemUser_status")
-	Select statusSelect;
+	@FindBy(linkText="Employment Status")
+	WebElement employmentStatus;
 	
-	@FindBy(className="formInputText ac_input")
-	WebElement employeeNameTextBox;
-	
-	@FindBy(id="systemUser_userName")
-	WebElement userNameTextBox;
-	
-	@FindBy(id="systemUser_password")
-	WebElement passwordTextBox;
-	
-	@FindBy(id="systemUser_confirmPassword")
-	WebElement confirmpasswordTextBox;
-	
-	@FindBy(xpath="//form[@id='frmSystemUser']//p//input[@id='btnSave']")
-	WebElement btnSave;
-	
-	@FindBy(xpath="//form[@id='frmSystemUser']//p//input[@id='btnCancel']")
-	WebElement btnCancel;
+	@FindBy(linkText="Job Categories")
+	WebElement jobCategories;
 
-	
-	
+	@FindBy(linkText="Work Shifts")
+	WebElement workShifts;
+		
 	
 	public AdminPage()
 	{
@@ -58,28 +52,89 @@ public class AdminPage extends BaseTest {
 		PageFactory.initElements(driver,this);
 	}
 	
-	public void createUser(String userRole,String employeename,String username,String status,String password,String cpassword)
-	{
-		userroleSelect.selectByValue(userRole);
-		employeeNameTextBox.clear();
-		employeeNameTextBox.sendKeys(employeename);
-		userNameTextBox.clear();
-		userNameTextBox.sendKeys(username);
-		userroleSelect.selectByValue(status);
-		passwordTextBox.clear();
-		passwordTextBox.sendKeys(password);
-		confirmpasswordTextBox.clear();
-		confirmpasswordTextBox.sendKeys(cpassword);
-		btnSave.click();
-		WebDriverWait wait=new WebDriverWait(driver,30);
-		wait.until(ExpectedConditions.attributeContains(By.xpath("//div[@class='menu']//li//b[contains(text(),'Admin')]/../../..//li"),"class", "current"));
-	}
-	
-	public boolean verifyCreatedUser(String userName)
+
+	public UsersCreationPage openUsersCreationPage()
 	{
 		
-		boolean b=driver.findElement(By.xpath("//table[@id='resultTable']//tbody//tr//td//a[text()='"+ userName+"']")).isDisplayed();
-		return b;
+		logger.info("Opening User Creation Page");
+		UsersCreationPage usercreationPage=new UsersCreationPage();
+		Actions action=new Actions(driver);
+		action.moveToElement(usermanagementDropdown);
+		action.click(users);
+		logger.info("User Creation Page opened successfully");
+		return usercreationPage;
+		
 	}
+	
+	
+	public JobTitlePage openjobTitlePage()
+	{
+		
+		logger.info("Opening Job Title Page");
+		JobTitlePage jobTitleCreationPage=new JobTitlePage();
+		Actions action=new Actions(driver);
+		action.moveToElement(jobdropdown);
+		action.click(jobTitles);
+		logger.info("Job Title Page opened successfully");
+		return jobTitleCreationPage;
+		
+	}
+	
+	
+	public PayGradesPage openPayGradesPage()
+	{
+		
+		logger.info("Opening Pay Grades Page");
+		PayGradesPage payGradesPage=new PayGradesPage();
+		Actions action=new Actions(driver);
+		action.moveToElement(jobdropdown);
+		action.click(payGrades);
+		logger.info("Pay Grades Page opened successfully");
+		return payGradesPage;
+		
+	}
+	
+	public EmploymentStatusPage openEmploementStatusPage()
+	{
+		
+		logger.info("Opening Employment Status Page");
+		EmploymentStatusPage emplymentstatusPage=new EmploymentStatusPage();
+		Actions action=new Actions(driver);
+		action.moveToElement(jobdropdown);
+		action.click(employmentStatus);
+		logger.info("Employment Status Page opened successfully");
+		return emplymentstatusPage;
+		
+	}
+	
+	public JobCategoriesPage openJobCategoriesPage()
+	{
+		
+		logger.info("Opening Job Categories Page");
+		JobCategoriesPage jobCategoriesPage=new JobCategoriesPage();
+		Actions action=new Actions(driver);
+		action.moveToElement(jobdropdown);
+		action.click(jobCategories);
+		logger.info("Job Categories Page opened successfully");
+		return jobCategoriesPage;
+		
+	}
+	
+	
+	public WorkShiftspage openWorkShiftsPage()
+	{
+		
+		logger.info("Opening Work Shifts Page");
+		WorkShiftspage workshiftsPage=new WorkShiftspage();
+		Actions action=new Actions(driver);
+		action.moveToElement(jobdropdown);
+		action.click(workShifts);
+		logger.info("Work Shifts Page successfully");
+		return workshiftsPage;
+		
+	}
+	
+	
+
 
 }
