@@ -37,7 +37,7 @@ public class BaseTest {
 			FileInputStream fis=new FileInputStream(System.getProperty("user.dir")+"/src/main/java/com/hrm/PFM/Config/Config.properties");
 			prop.load(fis);
 			
-			maintab=new MainTab(driver,getlogger(MainTab.class.getName()),getExtentReports(("user.dir")+"/Extent_Reports/"+"HRMExtent.html"),getExtentLog());
+			
 			logger=getlogger(getClass().getName());
 			extent=getExtentReports(("user.dir")+"/Extent_Reports/"+"HRMExtent.html");
 			extentLog=extent.startTest("Starting Logs and test");
@@ -109,7 +109,7 @@ public class BaseTest {
 	
 	public ExtentReports getExtentReports(String path)
 	{
-		extent=new ExtentReports(path,true);
+		extent=new ExtentReports(path);
 		return extent;
 	}
 

@@ -2,7 +2,9 @@ package com.hrm.Tests.JobTests;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.hrm.PFM.WebBaseTest;
@@ -11,11 +13,11 @@ import com.hrm.PFM.pages.LoginPage;
 import com.hrm.pages.Admin.UsersCreationPage;
 import com.hrm.utility.TestUtility;
 import com.relevantcodes.extentreports.LogStatus;
-
+@Listeners(com.hrm.utility.ExtentReporter.class)
 public class JobTitleCreation extends WebBaseTest {
 	
 	
-	
+		
 	@Test(priority=1)
 	public void login()
 	{
@@ -23,6 +25,9 @@ public class JobTitleCreation extends WebBaseTest {
 		LoginPage loginpage=new LoginPage();
 		loginpage.Login("Admin", "admin");
 		Assert.assertTrue(driver.getTitle().equals("OrangeHRM"), "Login Successfull");
+		System.out.println("Test1");
+		
+		
 			
 	}
 	

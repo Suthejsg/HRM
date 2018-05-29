@@ -24,13 +24,13 @@ public class UsersCreationPage extends BaseTest {
 	WebElement userSearchUsernametextbox;
 	
 	@FindBy(id="searchSystemUser_userType")
-	Select userSearchUserRoleDropDown;
+	WebElement userSearchUserRoleDropDown;
 	
 	@FindBy(id="searchSystemUser_employeeName_empName")
 	WebElement userSearchEmpnametextbox;
 	
 	@FindBy(id="searchSystemUser_status")
-	Select userSearchStatusDropdown;
+	WebElement userSearchStatusDropdown;
 	
 /*--------------------------------User Creation Results Table-------------------------------------*/	
 	@FindBy(xpath="//table[@id='resultTable']//thead")
@@ -52,10 +52,10 @@ public class UsersCreationPage extends BaseTest {
 
 	
 	@FindBy(id="systemUser_userType")
-	Select userroleSelect;
+	WebElement userroleSelect;
 	
 	@FindBy(id="systemUser_status")
-	Select statusSelect;
+	WebElement statusSelect;
 	
 	@FindBy(className="formInputText ac_input")
 	WebElement employeeNameTextBox;
@@ -86,14 +86,19 @@ public class UsersCreationPage extends BaseTest {
 	{
 		
 		logger.info("Creating the user");
-		userroleSelect.selectByValue(role);
+		userAddButton.click();
+		
+		
+		Select selectuserRole=new Select(userroleSelect);
+		selectuserRole.selectByIndex(0);
 		employeeNameTextBox.clear();
 		employeeNameTextBox.sendKeys(employeename);
 		
 		userNameTextBox.clear();
 		userNameTextBox.sendKeys(username);
 		
-		userroleSelect.selectByValue(status);
+		Select selectStatus=new Select(statusSelect);
+		selectStatus.selectByIndex(0);
 		
 		passwordTextBox.clear();
 		passwordTextBox.sendKeys(password);

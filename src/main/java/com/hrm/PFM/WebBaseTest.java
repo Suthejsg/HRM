@@ -9,10 +9,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
+import com.hrm.PFM.CommonTab.MainTab;
 import com.hrm.utility.TestUtility;
 import com.relevantcodes.extentreports.LogStatus;
 
+@Listeners(com.hrm.utility.ExtentReporter.class)
 public class WebBaseTest extends BaseTest {
 	
 	
@@ -29,6 +32,7 @@ public class WebBaseTest extends BaseTest {
 	public void beforeTest()
 	{
 		browserInitialization();
+		maintab=new MainTab(driver,getlogger(MainTab.class.getName()),getExtentReports(("user.dir")+"/Extent_Reports/"+"HRMExtent.html"),getExtentLog());
 	}
 	
 	@BeforeMethod
@@ -64,18 +68,22 @@ public class WebBaseTest extends BaseTest {
 	}
 	
 	@AfterTest
-	public void afterTest()
+	public void afterTest() throws IOException
 	{
-		
+		driver.close();
+		Runtime.getRuntime().exec("taskkill /F /IM chrome.exe");
+		Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
 	}
 	
 	
 	@AfterSuite
 	public void afterSuite()
 	{
-		driver.close();
-		//extent.close();
-		//extent.flush();
+		extent.flush();
+		extent.close();
+		driver.quit();
+
+		
 	}
 
 }

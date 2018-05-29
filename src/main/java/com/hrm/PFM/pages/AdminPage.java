@@ -61,6 +61,7 @@ public class AdminPage extends BaseTest {
 		Actions action=new Actions(driver);
 		action.moveToElement(usermanagementDropdown);
 		action.click(users);
+		action.build().perform();
 		logger.info("User Creation Page opened successfully");
 		return usercreationPage;
 		

@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -25,7 +26,7 @@ public class MainTab {
 	public static ExtentReports ereport;
 	public static ExtentTest etest;
 	
-	@FindBy(xpath="//a[@id='menu_admin_viewAdminModule']")
+	@FindBy(xpath="//div[@class='menu']//ul//li//b[text()='Admin']")
 	WebElement Admin;
 	
 	@FindBy(id="menu_pim_viewPimModule")
@@ -51,8 +52,10 @@ public class MainTab {
 		extentlog=etest;
 		log.info("Inside Main Tab Constructor");
 
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(cdriver,this);
 	}
+	
+	
 	
 	
 	
